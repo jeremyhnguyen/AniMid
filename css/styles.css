@@ -3,6 +3,10 @@
   font-family: Lato, sans-serif;
 }
 
+/* .hidden {
+  display: none !important;
+} */
+
 .navbar {
   background-color: #22252a;
   height: 4;
@@ -20,10 +24,14 @@ body {
   background-color: #111;
 }
 
+a:hover {
+  cursor: pointer;
+}
+
 .logo {
   color: #fff;
   align-self: center;
-  margin-left: 6rem;
+  margin-left: 5.8rem;
 }
 
 .fa-bars {
@@ -61,16 +69,11 @@ body {
 /* css test section */
 
 .menu-select {
-  display: none;
   position: absolute;
   z-index: 1;
 }
 
 /* fix font family for name */
-
-h1 {
-  font-family: "Rubik Mono One", sans-serif;
-}
 
 font-family: "Noto Sans",
   sans-serif;
@@ -80,5 +83,13 @@ img {
 }
 
 .logo > a > img {
-  max-height: 90px;
+  max-height: 100px;
+}
+
+/* testing layout */
+
+/* 376-1152 width */
+
+.show-info > p {
+  margin: 0;
 }

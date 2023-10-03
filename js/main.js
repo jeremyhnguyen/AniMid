@@ -1,13 +1,12 @@
-let $navbar = document.querySelector('.navbar');
+// let $navbar = document.querySelector('.navbar');
 
-let startPosition = window.scrollY;
+// let startPosition = window.scrollY;
 
-$navbar.addEventListener('scroll', function () {
-  const scrollPosition = window.scrollY;
-  if (startPosition > scrollPosition) {
-    $navbar.style.top = '0';
-  } else {
-    $navbar = '-50px';
-  }
-  startPosition = scrollPosition;
-});
+// $navbar.addEventListener('scroll', function () {
+//   const scrollPosition = window.scrollY;
+//   if (startPosition > scrollPosition) {
+//   } else {
+//     $navbar = '-50px';
+//   }
+//   startPosition = scrollPosition;
+// });
