@@ -18,6 +18,7 @@
   justify-content: space-between;
   transition: top 0.3s;
   overflow: hidden;
+  z-index: 10;
 }
 
 body {
@@ -86,10 +87,84 @@ img {
   max-height: 100px;
 }
 
+.show-info > p {
+  margin: 0;
+}
+
 /* testing layout */
 
 /* 376-1152 width */
 
-.show-info > p {
+/* carousel tests */
+.carousel {
+  padding-top: 90%;
+  padding-bottom: 20%;
+  position: relative;
+  height: 400px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.carousel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel-track-container {
+  background-color: orange;
+  height: 100%;
+  position: relative;
+}
+
+.carousel-track {
+  padding: 0;
   margin: 0;
+  list-style: none;
+}
+
+.carousel-slide {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.button-left {
+  left: -38px;
+  cursor: pointer;
+}
+
+.button-right {
+  right: -38px;
+  cursor: pointer;
+}
+
+.carousel-button i {
+  width: 20px;
+}
+
+.carousel-nav {
+  background-color: green;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.carousel-indicator {
+  border: 0;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  background: rgba(0 0 0 0.3);
+  margin: 0 12px;
+}
+
+.carousel-indicator.current-slide {
+  background: rgba(0, 0, 0, 0.75);
 }
