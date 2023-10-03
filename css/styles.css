@@ -1,0 +1,84 @@
+* {
+  color: #fff;
+  font-family: Lato, sans-serif;
+}
+
+.navbar {
+  background-color: #22252a;
+  height: 4;
+  min-width: 20rem;
+  left: 0;
+  right: 0;
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  transition: top 0.3s;
+  overflow: hidden;
+}
+
+body {
+  background-color: #111;
+}
+
+.logo {
+  color: #fff;
+  align-self: center;
+  margin-left: 6rem;
+}
+
+.fa-bars {
+  align-self: center;
+  margin-right: 1.2rem;
+  margin-top: 2.3rem;
+}
+
+.container {
+  padding-top: 100px;
+}
+
+.logo > a,
+.menu-select > a {
+  text-decoration: none;
+}
+
+.menu-select > a {
+  background-color: #3a3a3a;
+}
+
+.navbar a:hover,
+.fa-bars:hover, {
+  cursor: pointer;
+}
+
+.menu {
+  overflow: hidden;
+}
+
+.menu-select > a:hover {
+  background-color: #000;
+}
+
+/* css test section */
+
+.menu-select {
+  display: none;
+  position: absolute;
+  z-index: 1;
+}
+
+/* fix font family for name */
+
+h1 {
+  font-family: "Rubik Mono One", sans-serif;
+}
+
+font-family: "Noto Sans",
+  sans-serif;
+
+img {
+  width: 100%;
+}
+
+.logo > a > img {
+  max-height: 90px;
+}
