@@ -6,12 +6,24 @@ let previousPosition = window.scrollY;
 
 window.addEventListener('scroll', function () {
   const currentPosition = window.scrollY;
+  $dropdown.classList.add('hidden');
   if (previousPosition < currentPosition) {
     $navbar.classList.add('hidden');
   } else {
     $navbar.classList.remove('hidden');
   }
   previousPosition = currentPosition;
+});
+
+// ---function for dropdown---
+
+const $dropdown = document.querySelector('.menu-select');
+const $menuButton = document.querySelector('.navbar');
+
+$navbar.addEventListener('click', function () {
+  if (event.target !== $menuButton) {
+    $dropdown.classList.toggle('hidden');
+  }
 });
 
 // console.log(window.scrollY);
