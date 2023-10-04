@@ -16,9 +16,22 @@
   position: fixed;
   display: flex;
   justify-content: space-between;
-  transition: top 0.3s;
   overflow: hidden;
   z-index: 10;
+}
+
+.menu > button {
+  background-color: #22252a;
+  min-height: 100%;
+  min-width: 100px;
+  display: flex;
+  justify-content: center;
+  padding-left: 1.4rem;
+  padding-bottom: 2rem;
+}
+
+.menu > button:active {
+  background-color: #3a3a3a;
 }
 
 body {

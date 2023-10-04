@@ -1,3 +1,5 @@
+// ---function for navbar scrolling---
+
 const $navbar = document.querySelector('.navbar');
 
 let previousPosition = window.scrollY;
