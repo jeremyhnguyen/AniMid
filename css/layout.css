@@ -16,16 +16,26 @@ div {
   align-items: center;
 }
 
+.row {
+  border: 1px solid red;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .col-5 {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
-  width: 20%;
+  width: 18%;
+  margin-left: 0.3rem;
+  margin-right: 0.3rem;
 }
 
 .col-5 > a > img {
   max-width: 100%;
+  border-radius: 1.4rem;
 }
 
 .show-info {
@@ -34,9 +44,10 @@ div {
   text-align: center;
   border: 3px dotted cyan;
   max-width: 100%;
+  flex-grow: 0;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
   .flex-container {
     flex-direction: column;
   }
