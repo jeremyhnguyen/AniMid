@@ -26,8 +26,68 @@ $menuButton.addEventListener('click', function () {
   }
 });
 
-// issue 1
+// ---function for rendering airing page---
 
+const $row = document.querySelector('.row');
+const $showInfo = document.querySelector('.show-info');
+
+function renderAiring(data) {
+  const $col5 = document.createElement('div');
+  $col5.setAttribute('class', 'col-5');
+  const $a = document.createElement('a');
+  $a.setAttribute('href', '#');
+  const $img = document.createElement('img');
+  $img.setAttribute('src', data.images.jpg.image_url);
+  const $p1 = document.createElement('p');
+  $p1.setAttribute('class', 'pTitle');
+  $p1.textContent = data.title_english;
+  const $p2 = document.createElement('p');
+  $p2.setAttribute('class', 'pTitleJP');
+  $p2.textContent = data.title_japanese;
+  const $p5 = document.createElement('p');
+  $p5.textContent = `Score: ${data.score}`;
+  const $p3 = document.createElement('p');
+  $p3.setAttribute('class', 'pEpisodes');
+  $p3.textContent = `Episodes: ${data.episodes}`;
+  const $p4 = document.createElement('p');
+  $p4.setAttribute('class', 'pYear');
+  $p4.textContent = `Year: ${data.year}`;
+
+  $row.appendChild($col5);
+  $col5.appendChild($a);
+  $a.appendChild($img);
+  $col5.appendChild($showInfo);
+
+  $showInfo.appendChild($p1);
+  $showInfo.appendChild($p2);
+  $showInfo.appendChild($p5);
+  $showInfo.appendChild($p3);
+  $showInfo.appendChild($p4);
+
+  if (data.episodes === null) {
+    $p3.textContent = 'Episodes: 0';
+  }
+  if (data.score === null) {
+    $p5.classList.add('hidden');
+  }
+
+  return $col5;
+}
+
+function getAiring() {
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://api.jikan.moe/v4/seasons/now');
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', function () {
+    for (let i = 0; i < xhr.response.data.length; i++) {
+      const $airing = renderAiring(xhr.response.data[i]);
+      $row.appendChild($airing);
+    }
+  });
+  xhr.send();
+}
+
+getAiring();
 //    create domtree for airing page view
 //    a.append img
 //    p.append title, score, episodes, airing, year
@@ -40,8 +100,8 @@ $menuButton.addEventListener('click', function () {
 //           APIData.data[i].airing
 //           APIData.data[i].year
 
-// recreate carousel
-//    give carousel functionality
+//    recreate carousel
+//      give carousel functionality
 
 // issue 2
 // create test page for individual view
@@ -53,6 +113,7 @@ $menuButton.addEventListener('click', function () {
 //           APIData.data[i].title_japanese
 //           APIData.data[i].synopsis
 //           APIData.data[i].trailer
+// ROW FOR THIS VIEW SHOULD HAVE UNIQUE CLASS!!! popular has score p
 
 // issue 3
 //    create domtree for popular/upcoming page views

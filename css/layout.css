@@ -19,8 +19,8 @@
 .col-5 {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 18%;
   margin-left: 0.3rem;
   margin-right: 0.3rem;
@@ -36,7 +36,6 @@
   flex-direction: column;
   text-align: center;
   max-width: 100%;
-  flex-grow: 0;
   overflow: hidden;
 }
 
