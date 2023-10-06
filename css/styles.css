@@ -92,3 +92,8 @@ img {
 .show-info > p {
   margin: 0.05rem;
 }
+
+html,
+body {
+  overscroll-behavior: none;
+}

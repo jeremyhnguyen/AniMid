@@ -3,7 +3,7 @@ const $menuButton = document.querySelector('.menu');
 const $dropdown = document.querySelector('.menu-select');
 const $row = document.querySelector('.row');
 
-// ---function for navbar scrolling---
+// ---Function for Navbar Scrolling---
 
 let previousPosition = window.scrollY;
 
@@ -18,7 +18,7 @@ window.addEventListener('scroll', function () {
   previousPosition = currentPosition;
 });
 
-// ---function for dropdown---
+// ---Function for Dropdown---
 
 $menuButton.addEventListener('click', function () {
   if (event.target !== $navbar) {
@@ -26,7 +26,7 @@ $menuButton.addEventListener('click', function () {
   }
 });
 
-// ---function for rendering airing page---
+// ---Function for Rendering Airing Page---
 
 function renderAiring(data) {
   const $col5 = document.createElement('div');
@@ -95,3 +95,37 @@ function getAiring() {
 }
 
 getAiring();
+
+// View Swap for Airing page
+
+const $airingview = document.querySelector('.airing-view');
+const $popularview = document.querySelector('.popular-view');
+const $upcomingview = document.querySelector('.upcoming-view');
+
+const $airinglink = document.querySelector('#airing-view');
+const $popularlink = document.querySelector('#popular-view');
+const $upcominglink = document.querySelector('#upcoming-view');
+
+$airinglink.addEventListener('click', viewSwap);
+
+// function viewSwap(viewName) {
+//   if () {
+//     $popularview.className = 'hidden';
+//     $individualview.className = 'hidden';
+//     $upcomingview.className = 'hidden';
+//     $airingview.classList.remove('class', 'hidden');
+//   } else if (viewNameShown === 'entries') {
+//     $entriesDiv.classList.remove('hidden');
+//     $formDiv.className = 'hidden';
+//   }
+//   data.view = viewNameShown;
+// }
+
+// Event Handler for viewSwap Entries
+
+// $swapAnchor.addEventListener('click', function () {
+//   viewSwap('entries');
+//   $delete.className = 'hidden';
+//   $form.reset();
+//   $photo.src = 'images/placeholder-image-square.jpg';
+// });
