@@ -9,7 +9,6 @@
 
 .navbar {
   background-color: #22252a;
-  min-width: 20rem;
   left: 0;
   right: 0;
   position: fixed;
@@ -42,15 +41,13 @@ a:hover {
 }
 
 .logo {
-  color: #fff;
-  align-self: center;
   margin-left: 5rem;
 }
 
 .fa-bars {
   align-self: center;
   margin-right: 1.2rem;
-  margin-top: 2.3rem;
+  margin-top: 2.4rem;
 }
 
 .navpad {
@@ -66,16 +63,8 @@ a:hover {
   line-height: 2.4rem;
   min-width: 96px;
   text-align: right;
-  padding-right: 0.6rem;
+  padding-right: 0.4rem;
   border-bottom: 1px solid #3c3c3c;
-}
-
-.navbar a:hover {
-  cursor: pointer;
-}
-
-.menu {
-  overflow: hidden;
 }
 
 .menu-select > a:hover {
@@ -97,12 +86,9 @@ img {
 
 .logo > a > img {
   max-height: 100px;
+  padding-top: 1rem;
 }
 
 .show-info > p {
-  margin: 0;
+  margin: 0.05rem;
 }
-
-/* testing layout */
-
-/* 376-1152 width */
