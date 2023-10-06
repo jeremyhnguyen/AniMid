@@ -29,7 +29,6 @@ $menuButton.addEventListener('click', function () {
 // ---function for rendering airing page---
 
 const $row = document.querySelector('.row');
-const $showInfo = document.querySelector('.show-info');
 
 function renderAiring(data) {
   const $col5 = document.createElement('div');
@@ -37,10 +36,13 @@ function renderAiring(data) {
   const $a = document.createElement('a');
   $a.setAttribute('href', '#');
   const $img = document.createElement('img');
-  $img.setAttribute('src', data.images.jpg.image_url);
+  $img.setAttribute('src', data.images.webp.large_image_url);
+  $img.setAttribute('alt', data.title);
+  const $showInfo = document.createElement('div');
+  $showInfo.setAttribute('class', 'show-info');
   const $p1 = document.createElement('p');
   $p1.setAttribute('class', 'pTitle');
-  $p1.textContent = data.title_english;
+  $p1.textContent = data.title;
   const $p2 = document.createElement('p');
   $p2.setAttribute('class', 'pTitleJP');
   $p2.textContent = data.title_japanese;

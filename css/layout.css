@@ -19,6 +19,7 @@
 .col-5 {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 18%;
@@ -29,6 +30,9 @@
 .col-5 > a > img {
   max-width: 100%;
   border-radius: 1.4rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  max-height: 20rem;
 }
 
 .show-info {
@@ -36,6 +40,7 @@
   flex-direction: column;
   text-align: center;
   max-width: 100%;
+  min-height: 140px;
   overflow: hidden;
 }
 
@@ -46,5 +51,9 @@
 
   .col-5 {
     width: 80%;
+  }
+
+  .col-5 > a > img {
+    max-height: 30rem;
   }
 }

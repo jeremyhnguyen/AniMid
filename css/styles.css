@@ -44,7 +44,7 @@ a:hover {
 .logo {
   color: #fff;
   align-self: center;
-  margin-left: 100px;
+  margin-left: 5rem;
 }
 
 .fa-bars {
@@ -82,8 +82,6 @@ a:hover {
   background-color: #3a3a3a;
 }
 
-/* css test section */
-
 .menu-select {
   position: absolute;
   background-color: #000;
@@ -92,11 +90,6 @@ a:hover {
   flex-direction: column;
   align-items: flex-end;
 }
-
-/* fix font family for name */
-
-font-family: "Noto Sans",
-  sans-serif;
 
 img {
   width: 100%;
@@ -113,76 +106,3 @@ img {
 /* testing layout */
 
 /* 376-1152 width */
-
-/* carousel tests */
-
-.carousel {
-  display: grid;
-  place-items: center;
-}
-
-.carousel-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.slider {
-  width: 100%;
-  max-width: 800px;
-  height: 500px;
-  position: relative;
-
-  /* overflow: hidden; */
-}
-
-.slide {
-  width: 100%;
-  max-width: 800px;
-  height: 500px;
-  position: absolute;
-  transition: all 0.3s;
-}
-
-.carousel-button {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  padding: 10px;
-  border: none;
-  z-index: 8;
-  cursor: pointer;
-  background-color: none;
-  font-size: 18px;
-}
-
-.button-left {
-  top: 25rem;
-  left: 5%;
-}
-
-.button-right {
-  top: 25rem;
-  right: 5%;
-}
-
-.carousel-nav {
-  background-color: orange;
-  display: flex;
-  justify-content: center;
-  padding: 1px 0;
-  margin-bottom: 10%;
-}
-
-.carousel-indicator {
-  border: 0;
-  border-radius: 50%;
-  width: 15px;
-  height: 15px;
-  background: rgba(0 0 0 0.3);
-  margin: 0 12px;
-}
-
-.carousel-indicator.current-slide {
-  background: rgba(0, 0, 0, 0.75);
-}
