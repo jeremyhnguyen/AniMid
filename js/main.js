@@ -38,6 +38,9 @@ function renderAiring(data) {
   $img.setAttribute('alt', data.title);
   const $showInfo = document.createElement('div');
   $showInfo.setAttribute('class', 'show-info');
+  const $p6 = document.createElement('p');
+  $p6.setAttribute('class', 'PTitleENG');
+  $p6.textContent = data.title_english;
   const $p1 = document.createElement('p');
   $p1.setAttribute('class', 'pTitle');
   $p1.textContent = data.title;
@@ -57,6 +60,7 @@ function renderAiring(data) {
   $col5.appendChild($a);
   $a.appendChild($img);
   $col5.appendChild($showInfo);
+  $showInfo.appendChild($p6);
   $showInfo.appendChild($p1);
   $showInfo.appendChild($p2);
   $showInfo.appendChild($p5);
@@ -64,13 +68,13 @@ function renderAiring(data) {
   $showInfo.appendChild($p4);
 
   if (data.episodes === null) {
-    $p3.textContent = 'Episodes: 0';
+    $p3.textContent = 'Unreleased';
   }
   if (data.score === null) {
     $p5.classList.add('hidden');
   }
   if (data.year === null) {
-    $p4.classList.add('hidden');
+    $p4.textContent = 'Year: 2023';
   }
   return $col5;
 }
