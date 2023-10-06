@@ -71,6 +71,10 @@ function renderAiring(data) {
     $p5.classList.add('hidden');
   }
 
+  if (data.year === null) {
+    $p4.classList.add('hidden');
+  }
+
   return $col5;
 }
 
