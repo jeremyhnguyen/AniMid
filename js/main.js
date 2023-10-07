@@ -1,9 +1,21 @@
+// ---DOM variables---
+
 const $navbar = document.querySelector('.navbar');
 const $menuButton = document.querySelector('.menu');
 const $dropdown = document.querySelector('.menu-select');
-const $row = document.querySelector('.row');
+const $airingrow = document.querySelector('.airing-row');
+const $popularrow = document.querySelector('.popular-row');
+const $upcomingrow = document.querySelector('.upcoming-row');
+const $airingview = document.querySelector('.airing-view');
+const $popularview = document.querySelector('.popular-view');
+const $upcomingview = document.querySelector('.upcoming-view');
+const $individualview = document.querySelector('.individual-view');
+const $airingA = document.querySelector('#airing-view');
+const $popularA = document.querySelector('#popular-view');
+const $upcomingA = document.querySelector('#upcoming-view');
+const $logoA = document.querySelector('#home-view');
 
-// ---function for navbar scrolling---
+// ---Function for Navbar Scrolling---
 
 let previousPosition = window.scrollY;
 
@@ -18,7 +30,7 @@ window.addEventListener('scroll', function () {
   previousPosition = currentPosition;
 });
 
-// ---function for dropdown---
+// ---Function for Dropdown---
 
 $menuButton.addEventListener('click', function () {
   if (event.target !== $navbar) {
@@ -26,11 +38,12 @@ $menuButton.addEventListener('click', function () {
   }
 });
 
-// ---function for rendering airing page---
+// ---Function for Rendering Views---
 
-function renderAiring(data) {
+function renderData(data) {
   const $col5 = document.createElement('div');
   $col5.setAttribute('class', 'col-5');
+  $col5.setAttribute('data-id', data.mal_id);
   const $a = document.createElement('a');
   $a.setAttribute('href', '#');
   const $img = document.createElement('img');
@@ -38,6 +51,9 @@ function renderAiring(data) {
   $img.setAttribute('alt', data.title);
   const $showInfo = document.createElement('div');
   $showInfo.setAttribute('class', 'show-info');
+  const $p6 = document.createElement('p');
+  $p6.setAttribute('class', 'PTitleENG');
+  $p6.textContent = data.title_english;
   const $p1 = document.createElement('p');
   $p1.setAttribute('class', 'pTitle');
   $p1.textContent = data.title;
@@ -53,10 +69,10 @@ function renderAiring(data) {
   $p4.setAttribute('class', 'pYear');
   $p4.textContent = `Year: ${data.year}`;
 
-  $row.appendChild($col5);
   $col5.appendChild($a);
   $a.appendChild($img);
   $col5.appendChild($showInfo);
+  $showInfo.appendChild($p6);
   $showInfo.appendChild($p1);
   $showInfo.appendChild($p2);
   $showInfo.appendChild($p5);
@@ -64,7 +80,7 @@ function renderAiring(data) {
   $showInfo.appendChild($p4);
 
   if (data.episodes === null) {
-    $p3.textContent = 'Episodes: 0';
+    $p3.textContent = 'Unreleased';
   }
   if (data.score === null) {
     $p5.classList.add('hidden');
@@ -75,7 +91,7 @@ function renderAiring(data) {
   return $col5;
 }
 
-// --- API Request for Airing Season ---
+// ---API Request for Airing Season---
 
 function getAiring() {
   const xhr = new XMLHttpRequest();
@@ -83,11 +99,97 @@ function getAiring() {
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     for (let i = 0; i < xhr.response.data.length; i++) {
-      const $airing = renderAiring(xhr.response.data[i]);
-      $row.appendChild($airing);
+      const data = renderData(xhr.response.data[i]);
+      $airingrow.append(data);
     }
   });
   xhr.send();
 }
 
 getAiring();
+
+// ---API Request for Popular Page---
+
+function getPopular() {
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://api.jikan.moe/v4/top/anime');
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', function () {
+    for (let i = 0; i < xhr.response.data.length; i++) {
+      const data = renderData(xhr.response.data[i]);
+      $popularrow.appendChild(data);
+    }
+  });
+  xhr.send();
+}
+
+getPopular();
+
+// ---API Request for Upcoming Page---
+
+function getUpcoming() {
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://api.jikan.moe/v4/seasons/upcoming');
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', function () {
+    for (let i = 0; i < xhr.response.data.length; i++) {
+      const data = renderData(xhr.response.data[i]);
+      $upcomingrow.appendChild(data);
+    }
+  });
+  xhr.send();
+}
+
+getUpcoming();
+
+// ---View Swap for Airing View---
+
+$airingA.addEventListener('click', viewAiring);
+
+function viewAiring(event) {
+  if (event.target === $airingA) {
+    $popularview.classList.add('hidden');
+    $individualview.classList.add('hidden');
+    $upcomingview.classList.add('hidden');
+    $airingview.classList.remove('hidden');
+  }
+}
+
+// ---View Swap for Popular View---
+
+$popularA.addEventListener('click', viewPopular);
+
+function viewPopular(event) {
+  if (event.target === $popularA) {
+    $popularview.classList.remove('hidden');
+    $individualview.classList.add('hidden');
+    $upcomingview.classList.add('hidden');
+    $airingview.classList.add('hidden');
+  }
+}
+
+// ---View Swap for Upcoming View---
+
+$upcomingA.addEventListener('click', viewUpcoming);
+
+function viewUpcoming(event) {
+  if (event.target === $upcomingA) {
+    $popularview.classList.add('hidden');
+    $individualview.classList.add('hidden');
+    $upcomingview.classList.remove('hidden');
+    $airingview.classList.add('hidden');
+  }
+}
+
+// ---View Swap for Home View---
+
+$logoA.addEventListener('click', viewHome);
+
+function viewHome(event) {
+  if (event.target === $logoA) {
+    $popularview.classList.remove('hidden');
+    $individualview.classList.add('hidden');
+    $upcomingview.classList.remove('hidden');
+    $airingview.classList.remove('hidden');
+  }
+}

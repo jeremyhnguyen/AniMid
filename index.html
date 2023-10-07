@@ -11,23 +11,22 @@
   <script src="https://kit.fontawesome.com/c7eaf7aeee.js" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lato&family=Rubik+Mono+One&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
     <div class="navbar">
       <div class="logo">
-        <a href="#""><img src="/images/Logo.png" alt="AniMid Logo"></a>
+        <a href="#"><img src="images/logo.png" alt="AniMid Logo" id="home-view"></a>
       </div>
       <div class="menu">
         <button class="menu-button">
           <i class="fa-solid fa-bars fa-2xl"></i>
         </button>
         <div class="menu-select hidden">
-          <a href="#">Airing</a>
-          <a href="#">Popular</a>
-          <a href="#">Upcoming</a>
+          <a href="#" id="airing-view">Airing</a>
+          <a href="#" id="popular-view">Popular</a>
+          <a href="#" id="upcoming-view">Upcoming</a>
           <a href="#">Random</a>
         </div>
       </div>
@@ -37,21 +36,32 @@
     <div class="navpad"></div>
     <div class="container airing-view">
       <div class="flex-container">
-        <div class="row">
+        <div class="text-div">
+          <h2>Airing</h2>
+        </div>
+        <div class="row airing-row">
         </div>
       </div>
-      <div class="container popular-view hidden">
-        <div class="flex-container">
-          <div class="row">
-          </div>
+    </div>
+    <div class="container popular-view">
+      <div class="flex-container">
+        <div class="text-div">
+          <h2>Popular</h2>
+        </div>
+        <div class="row popular-row">
         </div>
       </div>
-      <div class="container upcoming-view hidden">
-        <div class="flex-container">
-          <div class="row">
-          </div>
+    </div>
+    <div class="container upcoming-view">
+      <div class="flex-container">
+        <div class="text-div">
+          <h2>Upcoming</h2>
+        </div>
+        <div class="row upcoming-row">
         </div>
       </div>
+    </div>
+    <div class="individual-view hidden">
     </div>
   </main>
   <script src="js/data.js"></script>

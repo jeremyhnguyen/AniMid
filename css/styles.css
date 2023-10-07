@@ -92,3 +92,16 @@ img {
 .show-info > p {
   margin: 0.05rem;
 }
+
+html,
+body {
+  overscroll-behavior: none;
+}
+
+.text-div {
+  width: 10rem;
+  background-color: #000;
+  border-radius: 20px;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
