@@ -193,3 +193,11 @@ function viewHome(event) {
     $airingview.classList.remove('hidden');
   }
 }
+
+// --- Issue #3 WIP ---
+// HTML/CSS for Individual View
+// Dummy HTML DOM Tree
+// --- Function for Rendering Individual View DOM Tree ---
+// --- API Request for IDs ---
+// Fix tile uniformity and logo horizontal stretch
+// --- View Swap for Individual View --- (update so that idv. view is hidden in other views)
