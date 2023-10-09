@@ -45,6 +45,20 @@
   overflow: hidden;
 }
 
+.col-5 > a {
+  display: flex;
+}
+
+.col-half {
+  display: flex;
+  width: 50%;
+}
+
+.synopsis {
+  display: flex;
+  flex-direction: column;
+}
+
 @media (max-width: 500px) {
   .flex-container {
     flex-direction: column;
@@ -53,8 +67,8 @@
   .col-5 {
     width: 80%;
   }
-}
 
-.col-5 > a {
-  display: flex;
+  .col-half {
+    width: 100%;
+  }
 }
