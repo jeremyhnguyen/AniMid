@@ -33,7 +33,8 @@
   margin-top: 1rem;
   margin-bottom: 1rem;
   object-fit: cover;
-  max-height: 20rem;
+  height: 320px;
+  width: 226px;
 }
 
 .show-info {
