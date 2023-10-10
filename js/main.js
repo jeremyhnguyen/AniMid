@@ -43,12 +43,12 @@ $menuButton.addEventListener('click', function () {
 function renderData(data) {
   const $col5 = document.createElement('div');
   $col5.setAttribute('class', 'col-5');
-  $col5.setAttribute('data-id', data.mal_id);
   const $a = document.createElement('a');
   $a.setAttribute('href', '#');
   const $img = document.createElement('img');
   $img.setAttribute('src', data.images.webp.large_image_url);
   $img.setAttribute('alt', data.title);
+  $img.setAttribute('data-id', data.mal_id);
   const $showInfo = document.createElement('div');
   $showInfo.setAttribute('class', 'show-info');
   const $p6 = document.createElement('p');
@@ -197,7 +197,7 @@ function viewHome(event) {
 // --- Issue #3 WIP ---
 // HTML/CSS for Individual View
 // Dummy HTML DOM Tree
-// --- Function for Rendering Individual View DOM Tree ---
+// --- Function add event listener to rows (parent) for Rendering Individual View DOM Tree +api request, template literal to add variable to {id}---
 // --- API Request for IDs ---
 // Fix tile uniformity and logo horizontal stretch
 // --- View Swap for Individual View --- (update so that idv. view is hidden in other views)
