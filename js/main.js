@@ -1,8 +1,12 @@
 // ---DOM Variables---
 
 const $navbar = document.querySelector('.navbar');
+const $logoA = document.querySelector('#home-view');
 const $menuButton = document.querySelector('.menu');
 const $dropdown = document.querySelector('.menu-select');
+const $airingA = document.querySelector('#airing-view');
+const $popularA = document.querySelector('#popular-view');
+const $upcomingA = document.querySelector('#upcoming-view');
 const $airingRow = document.querySelector('.airing-row');
 const $popularRow = document.querySelector('.popular-row');
 const $upcomingRow = document.querySelector('.upcoming-row');
@@ -10,11 +14,7 @@ const $airingView = document.querySelector('.airing-view');
 const $popularView = document.querySelector('.popular-view');
 const $upcomingView = document.querySelector('.upcoming-view');
 const $individualView = document.querySelector('.individual-view');
-const $airingA = document.querySelector('#airing-view');
-const $popularA = document.querySelector('#popular-view');
-const $upcomingA = document.querySelector('#upcoming-view');
-const $logoA = document.querySelector('#home-view');
-const $individualRow = document.querySelector('individual-row');
+const $individualRow = document.querySelector('.individual-row');
 
 // ---Function for Navbar Scrolling---
 
@@ -133,37 +133,55 @@ function renderIndividual(data) {
   if (data.year === null) {
     $p4.classList.add('hidden');
   }
-  return $individualRow;
+  return $col2;
 }
 
 // ---Click Event for Airing Tiles---
 
-// $airingRow.addEventListener('click', () => {
-//   funct here
-// })
+$airingRow.addEventListener('click', () => {
+  if (event.target.tagName === 'IMG') {
+    const $tileNumber = Number(event.target.getAttribute('data-id'));
+    $individualView.textContent = '';
+    getIndividualById($tileNumber);
+    viewSwap('individual');
+  }
+});
 
-// // ---Click Event for Popular Tiles---
+// ---Click Event for Popular Tiles---
 
-// $popularRow.addEventListener('click', () => {
-//   funct here
-// })
+$popularRow.addEventListener('click', () => {
+  if (event.target.tagName === 'IMG') {
+    const $tileNumber = Number(event.target.getAttribute('data-id'));
+    $individualView.textContent = '';
+    getIndividualById($tileNumber);
+    viewSwap('individual');
+  }
+});
 
-// // ---Click Event for Upcoming Tiles---
+// ---Click Event for Upcoming Tiles---
 
-// $upcomingRow.addEventListener('click', () => {
-//   funct here
-// })
+$upcomingRow.addEventListener('click', () => {
+  if (event.target.tagName === 'IMG') {
+    const $tileNumber = Number(event.target.getAttribute('data-id'));
+    $individualView.textContent = '';
+    getIndividualById($tileNumber);
+    viewSwap('individual');
+  }
+});
 
 // ---API Request for Individual View---
 
-// function getInvidualById {
-//   const xhr = new XMLHttpRequest();
-//   xhr.open('GET', `https://api.jikan.moe/v4/anime/${MAL-ID-HERE}`);
-//   xhr.responseType = 'json';
-//   xhr.addEventListener('load', => {
-//     for let
-//   }
-// }
+// ---get API data at specified data-id using template literal syntax---
+
+function getIndividualById(id) {
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', `https://api.jikan.moe/v4/anime/${id}`);
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', () => {
+    $individualRow.appendChild(renderIndividual(xhr.response.data));
+  });
+  xhr.send();
+}
 
 // ---API Request for Airing Season---
 
@@ -218,49 +236,90 @@ getUpcoming();
 
 // ---View Swap for Airing View---
 
-$airingA.addEventListener('click', viewAiring);
+$airingA.addEventListener('click', () => viewSwap('airing'));
 
-function viewAiring(event) {
-  if (event.target === $airingA) {
+// function viewAiring(event) {
+//   if (event.target === $airingA) {
+//     $popularView.classList.add('hidden');
+//     $individualView.classList.add('hidden');
+//     $upcomingView.classList.add('hidden');
+//     $airingView.classList.remove('hidden');
+//   }
+// }
+
+// // ---View Swap for Popular View---
+$popularA.addEventListener('click', () => viewSwap('popular'));
+// $popularA.addEventListener('click', viewPopular);
+
+// function viewPopular(event) {
+//   if (event.target === $popularA) {
+//     $popularView.classList.remove('hidden');
+//     $individualView.classList.add('hidden');
+//     $upcomingView.classList.add('hidden');
+//     $airingView.classList.add('hidden');
+//   }
+// }
+
+// // ---View Swap for Upcoming View---
+
+$upcomingA.addEventListener('click', () => viewSwap('upcoming'));
+// $upcomingA.addEventListener('click', viewUpcoming);
+
+// function viewUpcoming(event) {
+//   if (event.target === $upcomingA) {
+//     $popularView.classList.add('hidden');
+//     $individualView.classList.add('hidden');
+//     $upcomingView.classList.remove('hidden');
+//     $airingView.classList.add('hidden');
+//   }
+// }
+
+// // ---View Swap for Home View---
+
+$logoA.addEventListener('click', () => viewSwap('home'));
+
+// function viewHome(event) {
+//   if (event.target === $logoA) {
+// $popularView.classList.remove('hidden');
+// $individualView.classList.add('hidden');
+// $upcomingView.classList.remove('hidden');
+// $airingView.classList.remove('hidden');
+//   }
+// }
+
+// // ---View Swap for Individual View---
+
+// // function viewIndividual(event) {
+// //   if (event.target === //tiles) {
+//     $popularView.classList.add('hidden');
+//     $individualView.classList.remove('hidden');
+//     $upcomingView.classList.add('hidden');
+//     $airingView.classList.add('hidden');
+//   }
+// }
+
+function viewSwap(viewName) {
+  if (viewName === 'airing') {
     $popularView.classList.add('hidden');
     $individualView.classList.add('hidden');
     $upcomingView.classList.add('hidden');
     $airingView.classList.remove('hidden');
-  }
-}
-
-// ---View Swap for Popular View---
-
-$popularA.addEventListener('click', viewPopular);
-
-function viewPopular(event) {
-  if (event.target === $popularA) {
+  } else if (viewName === 'popular') {
     $popularView.classList.remove('hidden');
     $individualView.classList.add('hidden');
     $upcomingView.classList.add('hidden');
     $airingView.classList.add('hidden');
-  }
-}
-
-// ---View Swap for Upcoming View---
-
-$upcomingA.addEventListener('click', viewUpcoming);
-
-function viewUpcoming(event) {
-  if (event.target === $upcomingA) {
+  } else if (viewName === 'upcoming') {
     $popularView.classList.add('hidden');
     $individualView.classList.add('hidden');
     $upcomingView.classList.remove('hidden');
     $airingView.classList.add('hidden');
-  }
-}
-
-// ---View Swap for Home View---
-
-$logoA.addEventListener('click', viewHome);
-
-function viewHome(event) {
-  if (event.target === $logoA) {
+  } else if (viewName === 'individual') {
+    $popularView.classList.add('hidden');
+    $individualView.classList.remove('hidden');
+    $upcomingView.classList.add('hidden');
+    $airingView.classList.add('hidden');
+  } else if (viewName === 'home') {
     $popularView.classList.remove('hidden');
     $individualView.classList.add('hidden');
     $upcomingView.classList.remove('hidden');
