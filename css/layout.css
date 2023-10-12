@@ -60,13 +60,19 @@
   flex-direction: column;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1300px) {
+  .col-5 {
+    width: 30%;
+  }
+}
+
+@media (max-width: 780px) {
   .col-5 {
     width: 40%;
   }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1000px) {
   .col-half {
     width: 80%;
   }
