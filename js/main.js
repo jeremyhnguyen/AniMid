@@ -136,6 +136,24 @@ function renderIndividual(data) {
   return $individualRow;
 }
 
+// ---Click Event for Airing Tiles---
+
+// $airingRow.addEventListener('click', () => {
+//   funct here
+// })
+
+// // ---Click Event for Popular Tiles---
+
+// $popularRow.addEventListener('click', () => {
+//   funct here
+// })
+
+// // ---Click Event for Upcoming Tiles---
+
+// $upcomingRow.addEventListener('click', () => {
+//   funct here
+// })
+
 // ---API Request for Individual View---
 
 // function getInvidualById {
