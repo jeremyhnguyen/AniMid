@@ -101,3 +101,22 @@ body {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+
+.main-title {
+  font-size: 36px;
+  margin: 0;
+}
+
+.synopsis-title {
+  font-size: 20px;
+  margin: 4px;
+}
+
+.synopsis-stats {
+  margin-bottom: 0.5px;
+  line-height: 0.4;
+}
+
+.paragraph {
+  line-height: 2rem;
+}

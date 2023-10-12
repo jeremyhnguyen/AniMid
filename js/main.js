@@ -106,18 +106,25 @@ function renderIndividual(data) {
   $synopsis.setAttribute('class', 'synopsis');
   const $p1 = document.createElement('p');
   $p1.textContent = data.title_english;
+  $p1.setAttribute('class', 'main-title');
   const $p2 = document.createElement('p');
   $p2.textContent = data.title;
+  $p2.setAttribute('class', 'synopsis-title');
   const $p3 = document.createElement('p');
   $p3.textContent = data.title_japanese;
+  $p3.setAttribute('class', 'synopsis-title');
   const $p4 = document.createElement('p');
   $p4.textContent = `Score: ${data.score}`;
+  $p4.setAttribute('class', 'synopsis-stats');
   const $p5 = document.createElement('p');
   $p5.textContent = `Episodes: ${data.episodes}`;
+  $p5.setAttribute('class', 'synopsis-stats');
   const $p6 = document.createElement('p');
   $p6.textContent = `Year: ${data.year}`;
+  $p6.setAttribute('class', 'synopsis-stats');
   const $p7 = document.createElement('p');
   $p7.textContent = data.synopsis;
+  $p7.setAttribute('class', 'paragraph');
   const $vidRow = document.createElement('div');
   $vidRow.setAttribute('class', 'video-row');
 
