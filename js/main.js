@@ -20,7 +20,7 @@ const $individualRow = document.querySelector('individual-row');
 
 let previousPosition = window.scrollY;
 
-window.addEventListener('scroll', function () {
+window.addEventListener('scroll', () => {
   const currentPosition = window.scrollY;
   $dropdown.classList.add('hidden');
   if (previousPosition < currentPosition) {
@@ -33,7 +33,7 @@ window.addEventListener('scroll', function () {
 
 // ---Function for Dropdown---
 
-$menuButton.addEventListener('click', function () {
+$menuButton.addEventListener('click', () => {
   if (event.target !== $navbar) {
     $dropdown.classList.toggle('hidden');
   }
@@ -136,13 +136,24 @@ function renderIndividual(data) {
   return $individualRow;
 }
 
+// ---API Request for Individual View---
+
+// function getInvidualById {
+//   const xhr = new XMLHttpRequest();
+//   xhr.open('GET', `https://api.jikan.moe/v4/anime/${MAL-ID-HERE}`);
+//   xhr.responseType = 'json';
+//   xhr.addEventListener('load', => {
+//     for let
+//   }
+// }
+
 // ---API Request for Airing Season---
 
 function getAiring() {
   const xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://api.jikan.moe/v4/seasons/now');
   xhr.responseType = 'json';
-  xhr.addEventListener('load', function () {
+  xhr.addEventListener('load', () => {
     for (let i = 0; i < xhr.response.data.length; i++) {
       const data = renderData(xhr.response.data[i]);
       $airingRow.append(data);
@@ -159,7 +170,7 @@ function getPopular() {
   const xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://api.jikan.moe/v4/top/anime');
   xhr.responseType = 'json';
-  xhr.addEventListener('load', function () {
+  xhr.addEventListener('load', () => {
     for (let i = 0; i < xhr.response.data.length; i++) {
       const data = renderData(xhr.response.data[i]);
       $popularRow.appendChild(data);
@@ -176,7 +187,7 @@ function getUpcoming() {
   const xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://api.jikan.moe/v4/seasons/upcoming');
   xhr.responseType = 'json';
-  xhr.addEventListener('load', function () {
+  xhr.addEventListener('load', () => {
     for (let i = 0; i < xhr.response.data.length; i++) {
       const data = renderData(xhr.response.data[i]);
       $upcomingRow.appendChild(data);
