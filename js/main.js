@@ -238,11 +238,3 @@ function viewHome(event) {
     $airingView.classList.remove('hidden');
   }
 }
-
-// --- Issue #3 WIP ---
-// HTML/CSS for Individual View
-// --- Function add event listener to rows (parent) for Rendering Individual View DOM Tree +api request, template literal to add variable to {id}---
-// --- API Request for IDs ---
-// xhr.open('GET', `https://api.jikan.moe/v4/anime/${id}`)
-// Fix tile uniformity and logo horizontal stretch
-// --- View Swap for Individual View --- (update so that idv. view is hidden in other views)

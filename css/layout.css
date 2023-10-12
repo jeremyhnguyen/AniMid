@@ -60,6 +60,18 @@
   flex-direction: column;
 }
 
+@media (max-width: 1000px) {
+  .col-5 {
+    width: 40%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .col-half {
+    width: 80%;
+  }
+}
+
 @media (max-width: 500px) {
   .flex-container {
     flex-direction: column;
@@ -70,6 +82,6 @@
   }
 
   .col-half {
-    width: 100%;
+    width: 90%;
   }
 }
