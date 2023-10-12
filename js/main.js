@@ -14,7 +14,6 @@ const $airingView = document.querySelector('.airing-view');
 const $popularView = document.querySelector('.popular-view');
 const $upcomingView = document.querySelector('.upcoming-view');
 const $individualView = document.querySelector('.individual-view');
-const $individualRow = document.querySelector('.individual-row');
 
 // ---Function for Navbar Scrolling---
 
@@ -95,13 +94,15 @@ function renderData(data) {
 // ---Function for Rendering Individual View---
 
 function renderIndividual(data) {
+  const $individualRow = document.createElement('div');
+  $individualRow.setAttribute('class', 'row');
+  $individualRow.setAttribute('class', 'individual-row');
   const $col2 = document.createElement('div');
   $col2.setAttribute('class', 'col-half');
   const $img = document.createElement('img');
   $img.setAttribute('src', data.images.webp.large_image_url);
   $img.setAttribute('alt', data.title);
   const $synopsis = document.createElement('div');
-  $synopsis.setAttribute('class', 'col-half');
   $synopsis.setAttribute('class', 'synopsis');
   const $p1 = document.createElement('p');
   $p1.textContent = data.title_english;
@@ -120,9 +121,17 @@ function renderIndividual(data) {
   const $vidRow = document.createElement('div');
   $vidRow.setAttribute('class', 'video-row');
 
-  $individualRow.appendChild($col2, $synopsis, $vidRow);
+  $individualRow.appendChild($col2);
   $col2.appendChild($img);
-  $synopsis.appendChild($p1, $p2, $p3, $p4, $p5, $p6, $p7);
+  $individualRow.appendChild($synopsis);
+  $synopsis.appendChild($p1);
+  $synopsis.appendChild($p2);
+  $synopsis.appendChild($p3);
+  $synopsis.appendChild($p4);
+  $synopsis.appendChild($p5);
+  $synopsis.appendChild($p6);
+  $synopsis.appendChild($p7);
+  $individualRow.appendChild($vidRow);
 
   if (data.episodes === null) {
     $p3.textContent = 'Unreleased';
@@ -133,7 +142,7 @@ function renderIndividual(data) {
   if (data.year === null) {
     $p4.classList.add('hidden');
   }
-  return $col2;
+  return $individualRow;
 }
 
 // ---Click Event for Airing Tiles---
@@ -171,14 +180,12 @@ $upcomingRow.addEventListener('click', () => {
 
 // ---API Request for Individual View---
 
-// ---get API data at specified data-id using template literal syntax---
-
 function getIndividualById(id) {
   const xhr = new XMLHttpRequest();
   xhr.open('GET', `https://api.jikan.moe/v4/anime/${id}`);
   xhr.responseType = 'json';
   xhr.addEventListener('load', () => {
-    $individualRow.appendChild(renderIndividual(xhr.response.data));
+    $individualView.appendChild(renderIndividual(xhr.response.data));
   });
   xhr.send();
 }
@@ -238,65 +245,19 @@ getUpcoming();
 
 $airingA.addEventListener('click', () => viewSwap('airing'));
 
-// function viewAiring(event) {
-//   if (event.target === $airingA) {
-//     $popularView.classList.add('hidden');
-//     $individualView.classList.add('hidden');
-//     $upcomingView.classList.add('hidden');
-//     $airingView.classList.remove('hidden');
-//   }
-// }
+// ---View Swap for Popular View---
 
-// // ---View Swap for Popular View---
 $popularA.addEventListener('click', () => viewSwap('popular'));
-// $popularA.addEventListener('click', viewPopular);
 
-// function viewPopular(event) {
-//   if (event.target === $popularA) {
-//     $popularView.classList.remove('hidden');
-//     $individualView.classList.add('hidden');
-//     $upcomingView.classList.add('hidden');
-//     $airingView.classList.add('hidden');
-//   }
-// }
-
-// // ---View Swap for Upcoming View---
+// ---View Swap for Upcoming View---
 
 $upcomingA.addEventListener('click', () => viewSwap('upcoming'));
-// $upcomingA.addEventListener('click', viewUpcoming);
 
-// function viewUpcoming(event) {
-//   if (event.target === $upcomingA) {
-//     $popularView.classList.add('hidden');
-//     $individualView.classList.add('hidden');
-//     $upcomingView.classList.remove('hidden');
-//     $airingView.classList.add('hidden');
-//   }
-// }
-
-// // ---View Swap for Home View---
+// ---View Swap for Home View---
 
 $logoA.addEventListener('click', () => viewSwap('home'));
 
-// function viewHome(event) {
-//   if (event.target === $logoA) {
-// $popularView.classList.remove('hidden');
-// $individualView.classList.add('hidden');
-// $upcomingView.classList.remove('hidden');
-// $airingView.classList.remove('hidden');
-//   }
-// }
-
-// // ---View Swap for Individual View---
-
-// // function viewIndividual(event) {
-// //   if (event.target === //tiles) {
-//     $popularView.classList.add('hidden');
-//     $individualView.classList.remove('hidden');
-//     $upcomingView.classList.add('hidden');
-//     $airingView.classList.add('hidden');
-//   }
-// }
+// ---View Swap Function---
 
 function viewSwap(viewName) {
   if (viewName === 'airing') {

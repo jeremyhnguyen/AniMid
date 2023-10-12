@@ -27,6 +27,10 @@
   margin-right: 0.3rem;
 }
 
+.col-half > img {
+  width: 70%;
+}
+
 .col-5 > a > img {
   max-width: 100%;
   border-radius: 1.4rem;
@@ -50,20 +54,43 @@
   display: flex;
 }
 
+.individual-row {
+  display: flex;
+}
+
 .col-half {
   display: flex;
+  justify-content: center;
   width: 45%;
   margin: 1rem;
 }
 
 .synopsis {
   display: flex;
+  justify-content: center;
+  width: 45%;
   flex-direction: column;
+  margin: 1rem;
 }
 
 @media (max-width: 1300px) {
   .col-5 {
     width: 30%;
+  }
+
+  .col-half {
+    width: 80%;
+  }
+
+  .synopsis {
+    width: 80%;
+  }
+}
+
+@media (max-width: 1120px) {
+  .individual-row {
+    flex-direction: column;
+    align-items: center;
   }
 }
 
