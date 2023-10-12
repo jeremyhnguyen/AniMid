@@ -80,12 +80,8 @@ a:hover {
   align-items: flex-end;
 }
 
-img {
-  width: 100%;
-}
-
 .logo > a > img {
-  max-height: 100px;
+  height: 85px;
   padding-top: 1rem;
 }
 
@@ -102,6 +98,28 @@ body {
   width: 10rem;
   background-color: #000;
   border-radius: 20px;
-  margin-top: 2.5rem;
+  margin-top: 1rem;
   margin-bottom: 1rem;
+}
+
+.main-title {
+  font-size: 36px;
+  margin: 0;
+}
+
+.synopsis-title {
+  font-size: 20px;
+  margin: 4px;
+}
+
+.synopsis-stats {
+  margin-bottom: 0.5px;
+  line-height: 0.4;
+}
+
+.paragraph {
+  line-height: 2rem;
+  margin-top: 2.5rem;
+  max-width: 650px;
+  align-self: center;
 }

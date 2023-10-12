@@ -1,25 +1,25 @@
-// ---DOM variables---
+// ---DOM Variables---
 
 const $navbar = document.querySelector('.navbar');
+const $logoA = document.querySelector('#home-view');
 const $menuButton = document.querySelector('.menu');
 const $dropdown = document.querySelector('.menu-select');
-const $airingrow = document.querySelector('.airing-row');
-const $popularrow = document.querySelector('.popular-row');
-const $upcomingrow = document.querySelector('.upcoming-row');
-const $airingview = document.querySelector('.airing-view');
-const $popularview = document.querySelector('.popular-view');
-const $upcomingview = document.querySelector('.upcoming-view');
-const $individualview = document.querySelector('.individual-view');
 const $airingA = document.querySelector('#airing-view');
 const $popularA = document.querySelector('#popular-view');
 const $upcomingA = document.querySelector('#upcoming-view');
-const $logoA = document.querySelector('#home-view');
+const $airingRow = document.querySelector('.airing-row');
+const $popularRow = document.querySelector('.popular-row');
+const $upcomingRow = document.querySelector('.upcoming-row');
+const $airingView = document.querySelector('.airing-view');
+const $popularView = document.querySelector('.popular-view');
+const $upcomingView = document.querySelector('.upcoming-view');
+const $individualView = document.querySelector('.individual-view');
 
 // ---Function for Navbar Scrolling---
 
 let previousPosition = window.scrollY;
 
-window.addEventListener('scroll', function () {
+window.addEventListener('scroll', () => {
   const currentPosition = window.scrollY;
   $dropdown.classList.add('hidden');
   if (previousPosition < currentPosition) {
@@ -32,7 +32,7 @@ window.addEventListener('scroll', function () {
 
 // ---Function for Dropdown---
 
-$menuButton.addEventListener('click', function () {
+$menuButton.addEventListener('click', () => {
   if (event.target !== $navbar) {
     $dropdown.classList.toggle('hidden');
   }
@@ -43,12 +43,12 @@ $menuButton.addEventListener('click', function () {
 function renderData(data) {
   const $col5 = document.createElement('div');
   $col5.setAttribute('class', 'col-5');
-  $col5.setAttribute('data-id', data.mal_id);
   const $a = document.createElement('a');
   $a.setAttribute('href', '#');
   const $img = document.createElement('img');
   $img.setAttribute('src', data.images.webp.large_image_url);
   $img.setAttribute('alt', data.title);
+  $img.setAttribute('data-id', data.mal_id);
   const $showInfo = document.createElement('div');
   $showInfo.setAttribute('class', 'show-info');
   const $p6 = document.createElement('p');
@@ -91,16 +91,122 @@ function renderData(data) {
   return $col5;
 }
 
+// ---Function for Rendering Individual View---
+
+function renderIndividual(data) {
+  const $individualRow = document.createElement('div');
+  $individualRow.setAttribute('class', 'row');
+  $individualRow.setAttribute('class', 'individual-row');
+  const $col2 = document.createElement('div');
+  $col2.setAttribute('class', 'col-half');
+  const $img = document.createElement('img');
+  $img.setAttribute('src', data.images.webp.large_image_url);
+  $img.setAttribute('alt', data.title);
+  const $synopsis = document.createElement('div');
+  $synopsis.setAttribute('class', 'synopsis');
+  const $p1 = document.createElement('p');
+  $p1.textContent = data.title_english;
+  $p1.setAttribute('class', 'main-title');
+  const $p2 = document.createElement('p');
+  $p2.textContent = data.title;
+  $p2.setAttribute('class', 'synopsis-title');
+  const $p3 = document.createElement('p');
+  $p3.textContent = data.title_japanese;
+  $p3.setAttribute('class', 'synopsis-title');
+  const $p4 = document.createElement('p');
+  $p4.textContent = `Score: ${data.score}`;
+  $p4.setAttribute('class', 'synopsis-stats');
+  const $p5 = document.createElement('p');
+  $p5.textContent = `Episodes: ${data.episodes}`;
+  $p5.setAttribute('class', 'synopsis-stats');
+  const $p6 = document.createElement('p');
+  $p6.textContent = `Year: ${data.year}`;
+  $p6.setAttribute('class', 'synopsis-stats');
+  const $p7 = document.createElement('p');
+  $p7.textContent = data.synopsis;
+  $p7.setAttribute('class', 'paragraph');
+  const $vidRow = document.createElement('div');
+  $vidRow.setAttribute('class', 'video-row');
+
+  $individualRow.appendChild($col2);
+  $col2.appendChild($img);
+  $individualRow.appendChild($synopsis);
+  $synopsis.appendChild($p1);
+  $synopsis.appendChild($p2);
+  $synopsis.appendChild($p3);
+  $synopsis.appendChild($p4);
+  $synopsis.appendChild($p5);
+  $synopsis.appendChild($p6);
+  $synopsis.appendChild($p7);
+  $individualRow.appendChild($vidRow);
+
+  if (data.episodes === null) {
+    $p3.textContent = 'Unreleased';
+  }
+  if (data.score === null) {
+    $p5.classList.add('hidden');
+  }
+  if (data.year === null) {
+    $p4.classList.add('hidden');
+  }
+  return $individualRow;
+}
+
+// ---Click Event for Airing Tiles---
+
+$airingRow.addEventListener('click', () => {
+  if (event.target.tagName === 'IMG') {
+    const $tileNumber = Number(event.target.getAttribute('data-id'));
+    $individualView.textContent = '';
+    getIndividualById($tileNumber);
+    viewSwap('individual');
+  }
+});
+
+// ---Click Event for Popular Tiles---
+
+$popularRow.addEventListener('click', () => {
+  if (event.target.tagName === 'IMG') {
+    const $tileNumber = Number(event.target.getAttribute('data-id'));
+    $individualView.textContent = '';
+    getIndividualById($tileNumber);
+    viewSwap('individual');
+  }
+});
+
+// ---Click Event for Upcoming Tiles---
+
+$upcomingRow.addEventListener('click', () => {
+  if (event.target.tagName === 'IMG') {
+    const $tileNumber = Number(event.target.getAttribute('data-id'));
+    $individualView.textContent = '';
+    getIndividualById($tileNumber);
+    viewSwap('individual');
+  }
+});
+
+// ---API Request for Individual View---
+
+function getIndividualById(id) {
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', `https://api.jikan.moe/v4/anime/${id}`);
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', () => {
+    $individualView.appendChild(renderIndividual(xhr.response.data));
+  });
+  xhr.send();
+}
+
 // ---API Request for Airing Season---
 
 function getAiring() {
   const xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://api.jikan.moe/v4/seasons/now');
   xhr.responseType = 'json';
-  xhr.addEventListener('load', function () {
+  xhr.addEventListener('load', () => {
     for (let i = 0; i < xhr.response.data.length; i++) {
       const data = renderData(xhr.response.data[i]);
-      $airingrow.append(data);
+      $airingRow.append(data);
     }
   });
   xhr.send();
@@ -114,10 +220,10 @@ function getPopular() {
   const xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://api.jikan.moe/v4/top/anime');
   xhr.responseType = 'json';
-  xhr.addEventListener('load', function () {
+  xhr.addEventListener('load', () => {
     for (let i = 0; i < xhr.response.data.length; i++) {
       const data = renderData(xhr.response.data[i]);
-      $popularrow.appendChild(data);
+      $popularRow.appendChild(data);
     }
   });
   xhr.send();
@@ -131,10 +237,10 @@ function getUpcoming() {
   const xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://api.jikan.moe/v4/seasons/upcoming');
   xhr.responseType = 'json';
-  xhr.addEventListener('load', function () {
+  xhr.addEventListener('load', () => {
     for (let i = 0; i < xhr.response.data.length; i++) {
       const data = renderData(xhr.response.data[i]);
-      $upcomingrow.appendChild(data);
+      $upcomingRow.appendChild(data);
     }
   });
   xhr.send();
@@ -144,52 +250,47 @@ getUpcoming();
 
 // ---View Swap for Airing View---
 
-$airingA.addEventListener('click', viewAiring);
-
-function viewAiring(event) {
-  if (event.target === $airingA) {
-    $popularview.classList.add('hidden');
-    $individualview.classList.add('hidden');
-    $upcomingview.classList.add('hidden');
-    $airingview.classList.remove('hidden');
-  }
-}
+$airingA.addEventListener('click', () => viewSwap('airing'));
 
 // ---View Swap for Popular View---
 
-$popularA.addEventListener('click', viewPopular);
-
-function viewPopular(event) {
-  if (event.target === $popularA) {
-    $popularview.classList.remove('hidden');
-    $individualview.classList.add('hidden');
-    $upcomingview.classList.add('hidden');
-    $airingview.classList.add('hidden');
-  }
-}
+$popularA.addEventListener('click', () => viewSwap('popular'));
 
 // ---View Swap for Upcoming View---
 
-$upcomingA.addEventListener('click', viewUpcoming);
-
-function viewUpcoming(event) {
-  if (event.target === $upcomingA) {
-    $popularview.classList.add('hidden');
-    $individualview.classList.add('hidden');
-    $upcomingview.classList.remove('hidden');
-    $airingview.classList.add('hidden');
-  }
-}
+$upcomingA.addEventListener('click', () => viewSwap('upcoming'));
 
 // ---View Swap for Home View---
 
-$logoA.addEventListener('click', viewHome);
+$logoA.addEventListener('click', () => viewSwap('home'));
 
-function viewHome(event) {
-  if (event.target === $logoA) {
-    $popularview.classList.remove('hidden');
-    $individualview.classList.add('hidden');
-    $upcomingview.classList.remove('hidden');
-    $airingview.classList.remove('hidden');
+// ---View Swap Function---
+
+function viewSwap(viewName) {
+  if (viewName === 'airing') {
+    $popularView.classList.add('hidden');
+    $individualView.classList.add('hidden');
+    $upcomingView.classList.add('hidden');
+    $airingView.classList.remove('hidden');
+  } else if (viewName === 'popular') {
+    $popularView.classList.remove('hidden');
+    $individualView.classList.add('hidden');
+    $upcomingView.classList.add('hidden');
+    $airingView.classList.add('hidden');
+  } else if (viewName === 'upcoming') {
+    $popularView.classList.add('hidden');
+    $individualView.classList.add('hidden');
+    $upcomingView.classList.remove('hidden');
+    $airingView.classList.add('hidden');
+  } else if (viewName === 'individual') {
+    $popularView.classList.add('hidden');
+    $individualView.classList.remove('hidden');
+    $upcomingView.classList.add('hidden');
+    $airingView.classList.add('hidden');
+  } else if (viewName === 'home') {
+    $popularView.classList.remove('hidden');
+    $individualView.classList.add('hidden');
+    $upcomingView.classList.remove('hidden');
+    $airingView.classList.remove('hidden');
   }
 }
