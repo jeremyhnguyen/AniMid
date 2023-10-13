@@ -141,13 +141,13 @@ function renderIndividual(data) {
   $individualRow.appendChild($vidRow);
 
   if (data.episodes === null) {
-    $p3.textContent = 'Unreleased';
+    $p5.textContent = 'Unreleased';
   }
   if (data.score === null) {
-    $p5.classList.add('hidden');
+    $p4.classList.add('hidden');
   }
   if (data.year === null) {
-    $p4.classList.add('hidden');
+    $p6.classList.add('hidden');
   }
   return $individualRow;
 }
